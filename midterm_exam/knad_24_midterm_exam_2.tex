@@ -1,0 +1,215 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Теория вероятностей и статистика: кнад}
+\chead{}
+\rhead{Контрольная 1, версия 2}
+\lfoot{}
+\cfoot{Да пребудет с тобой сила!}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\pCorr}{\mathrm{pCorr}}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\let\H\relax
+\DeclareMathOperator{\H}{\mathbb{H}}
+
+\DeclareMathOperator{\CE}{\mathrm{CE}}
+
+
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+
+\newcommand \cN{\mathcal{N}}
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\scalp}{\langle}{\rangle}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+
+
+\begin{document}
+
+\begin{enumerate}
+    \item {[10]} Величины $(X_n)$ независимы и одинаково распределены с плостностью $f(x) = 2 - 2x$ на отрезке $[0;1]$.
+    \begin{enumerate}
+        \item {[2]} Найди число $c$ такое, что величина $X_1$ не превышает $c$ с вероятностью $1/4$.
+        \item {[2]} Найдите энтропию случайной величины $X_1$.
+        \item {[2]} Найдите совместную энтропию пары $(X_1, X_2)$.
+        \item {[4]} Найдите функцию плотности величины $Y = \exp(X)$.
+    \end{enumerate}
+
+    \item {[10]} Совместная функция плотности вектора $(X, Y)$ равна $f(x, y) = 6xy^2$ на квадрате $[0;1] \times [0;1]$ и $0$ за его пределами. 
+    \begin{enumerate}
+        \item {[2]} Найдите вероятность $\P(X > Y > X/2)$. 
+        \item {[6]} Найдите $\E(X)$, $\E(XY)$, $\Cov(X, Y)$.
+        \item {[2]} Зависимы ли величины $X$ и $Y$?
+    \end{enumerate}
+    
+    В этой задаче в этот раз можно оставить ответ в виде аккуратно выписанного интеграла :)
+   
+
+    \item {[10]} Глеб Жеглов каждый день ловит одного преступника.
+    С вероятностью $0.2$ на преступный путь вместо пойманного преступника встают два новых горожанина. 
+    Изначально в городе $1$ преступник. 
+    
+    Обозначим за $T$ день поимки последнего преступника в городе. 
+
+    \begin{enumerate}
+      \item {[2]} Найдите $\P(T = 4)$.
+      \item {[5]} Найдите ожидание $\E(T)$ и дисперсию $\Var(T)$.
+      \item {[3]} Найдите функцию $m(u)$, производяющую моменты $T$.
+    \end{enumerate}
+
+    
+    
+    \item {[10]} Эксперт пытается определить, говорит ли подозреваемый правду, с помощью детектора лжи.
+    Если подозреваемый говорит правду, то эксперт ошибочно выявляет ложь с вероятностью $0.2$. 
+    Если подозреваемый обманывает, то эксперт выявляет ложь с вероятностью $0.9$. 
+    В деле об одиночном нападении подозревают десять человек, один из которых виновен и будет лгать, 
+    остальные — невиновны и говорят правду.
+    
+    Эксперт выбрал двух подозреваемых, Алису и Боба, наугад. 
+    \begin{enumerate}
+        \item {[3]} Какова вероятность того, что детектор покажет, что Алиса лжёт?
+        \item {[3]} Какова вероятность того, что Алиса невиновна, если детектор показал, что она лжёт?
+        \item {[4]} Какова вероятность того, что Алиса невиновна, если детектор показал, что она лжёт, и показал, что Боб говорит правду.
+    \end{enumerate}
+
+
+    \item {[10]} Алиса выбирает один раз равномерно распределённой число от $0$ до $3$. 
+    Если число оказывается больше $1$, то она заменяет его на $2$, а затем выплачивает получившуюся величину Бобу.
+    Обозначим $X$ — выигрыш Боба.
+    \begin{enumerate}
+        \item {[5]} Найдите $\E(X)$, $\Var(X)$.
+        \item {[5]} Найдите функцию распределения $F(x)$ величины $X$ и постройте её график.
+    \end{enumerate}
+
+
+    \item {[10]} У Илона Маска $101$ золотая монета. 
+    Он подкидывает каждую из них. 
+    Пусть $X$ монеток выпали решкой вверх. 
+    Затем Илон повторно подкидывает те монетки, которые лежат орлом вверх. 
+    После второго раунда в общей сложности $Y$ монеток лежат решкой вверх.
+
+    \begin{enumerate}
+        \item {[4]} Найдите ожидание $\E(Y)$, дисперсию $\Var(Y)$.
+        \item {[3]} Найдите наиболее вероятное значение величины $Y$.
+        \item {[3]} Найдите $\Cov(X, Y)$.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
+
+% здесь проектируемая часть
+
+
